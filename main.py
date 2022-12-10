@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-from routers.admin.v1 import api as admin_v1
-from database import engine
+
 import models
+from database import engine
+from routers.admin.v1 import api as admin_v1
 
 models.Base.metadata.create_all(bind=engine)
 
