@@ -29,7 +29,7 @@ def create_student(students: student, db: Session):
     return students_db
 
 
-def get_student(id: str, db: Session):
+def students_id(id: str, db: Session):
     student_db = (
         db.query(studentBase)
         .filter(studentBase.id == id, studentBase.is_deleted == False)
@@ -42,7 +42,7 @@ def get_student(id: str, db: Session):
 
 
 def get_student_id(id: str, db: Session):
-    student_db = get_student(id=id, db=db)
+    student_db = students_id(id=id, db=db)
     return student_db
 
 
@@ -69,11 +69,9 @@ def get_student_limit(skip: int, limit: int, db: Session):
 
 
 def update_student(students: student, id: str, db: Session):
-    student_db = (
-        db.query(studentBase)
-        .filter(studentBase.id == id, studentBase.is_deleted == False)
-        .first()
-    )
+    student_db = students_id(id=id, db=db)
+
+
     if student_db is None:
         raise HTTPException(status_code=404, detail="Student not found")
     student_db.st_surname = students.st_surname
@@ -89,12 +87,9 @@ def update_student(students: student, id: str, db: Session):
     return student_db
 
 
+
 def delete_student(id: str, db: Session):
-    student_db = (
-        db.query(studentBase)
-        .filter(studentBase.id == id, studentBase.is_deleted == False)
-        .first()
-    )
+    student_db = students_id(id=id, db=db)
     if student_db is None:
         raise HTTPException(status_code=404, detail="Student not found")
     student_db.is_deleted = True
