@@ -1,9 +1,10 @@
-from typing import Optional
-from pydantic import BaseModel, Field
 # import enum
 from datetime import datetime
-from models import Field_name, std, div
+from typing import Optional
 
+from pydantic import BaseModel, Field
+
+from models import Field_name, div, std
 
 # class Field_name(enum.Enum):
 #     science = "science"
@@ -24,27 +25,28 @@ from models import Field_name, std, div
 
 
 class student(BaseModel):
-    st_surname : str = Field(...)
-    st_name : str
-    st_field : Field_name
-    st_std : std
+    st_surname: str = Field(...)
+    st_name: str
+    st_field: Field_name
+    st_std: std
     st_div: div
-    st_city : str
-    
+    st_city: str
+
     class Config:
         orm_mode = True
 
+
 class showStudent(BaseModel):
-    id : str
-    st_surname : str 
-    st_name    : str
-    st_field : Field_name
-    st_std : std
-    st_div : div
+    id: str
+    st_surname: str
+    st_name: str
+    st_field: Field_name
+    st_std: std
+    st_div: div
     st_city: str
-    created_at : datetime
-    updated_at : datetime
-    is_deleted : datetime
+    created_at: datetime
+    updated_at: datetime
+    is_deleted: datetime
 
     class Config:
         orm_mode = True
