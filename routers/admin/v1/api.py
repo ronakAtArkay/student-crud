@@ -21,9 +21,7 @@ def create_student(students: schemas.student, db: Session = Depends(get_db)):
     return student_db
 
 
-@router.get(
-    "/student/{id}", tags=["student"], response_model=schemas.showStudent
-)
+@router.get("/student/{id}", tags=["student"], response_model=schemas.showStudent)
 def get_student(
     id: str = Path(
         title="Studet_id",

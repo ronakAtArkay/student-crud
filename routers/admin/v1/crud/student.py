@@ -71,7 +71,6 @@ def get_student_limit(skip: int, limit: int, db: Session):
 def update_student(students: student, id: str, db: Session):
     student_db = students_id(id=id, db=db)
 
-
     if student_db is None:
         raise HTTPException(status_code=404, detail="Student not found")
     student_db.st_surname = students.st_surname
@@ -85,7 +84,6 @@ def update_student(students: student, id: str, db: Session):
     db.commit()
     db.refresh(student_db)
     return student_db
-
 
 
 def delete_student(id: str, db: Session):
