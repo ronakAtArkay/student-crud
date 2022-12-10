@@ -5,12 +5,13 @@ from models import studentBase
 from sqlalchemy.orm import Session
 from routers.admin.v1.schemas import student
 from fastapi import HTTPException
+from pydantic import Field
 
 def object_as_dict(obj):
     return {c.key: getattr(obj, c.key) for c in inspect(obj).mapper.column_attrs}
 
 def create_student(students: student, db: Session):
-    students_db = studentBase(id=generate_id(), st_surname=students.st_surname, st_name=students.st_name, st_field=students.field, st_std=students.std, st_div=students.div, st_city=students.st_city)
+    students_db = studentBase(id=generate_id() , st_surname=students.st_surname, st_name=students.st_name, st_field=students.st_field, st_std=students.st_std, st_div=students.st_div, st_city=students.st_city)
     # print(object_as_dict(students_db))
     db.add(students_db)
     db.commit()
@@ -65,4 +66,4 @@ def delete_student(id: str, db: Session):
     db.add(student_db)
     db.commit()
     db.refresh(student_db)
-    return "student are deleted successfully"
+    return f"student {student_db.st_name} are deleted successfully"

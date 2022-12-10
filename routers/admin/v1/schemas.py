@@ -24,24 +24,27 @@ from models import Field_name, std, div
 
 
 class student(BaseModel):
-    st_surname : str
+    st_surname : str = Field(...)
     st_name : str
-    field : Field_name
-    std : std
-    div: div
+    st_field : Field_name
+    st_std : std
+    st_div: div
     st_city : str
     
     class Config:
         orm_mode = True
 
 class showStudent(BaseModel):
-    
-    st_surname : str
+    id : str
+    st_surname : str 
     st_name    : str
-    field      : Field_name = Field(...)
-    std : Optional[std]
-    div: Optional[div]
-    st_city    : str
+    st_field : Field_name
+    st_std : std
+    st_div : div
+    st_city: str
+    created_at : datetime
+    updated_at : datetime
+    is_deleted : datetime
 
     class Config:
         orm_mode = True

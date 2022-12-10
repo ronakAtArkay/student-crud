@@ -26,7 +26,7 @@ class studentBase(Base):
     __tablename__ = "student"
 
     id = Column(String(200), primary_key = True)
-    st_surname = Column(String(200))
+    st_surname = Column(String(200), nullable = False, default = ...)
     st_name = Column(String(200))
     st_field = Column(Enum(Field_name))
     st_std = Column(Enum(std))
