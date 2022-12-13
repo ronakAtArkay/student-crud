@@ -13,8 +13,8 @@ router = APIRouter()
 
 @router.post(
     "/student",
-    tags=["student"]
-    # response_model= schemas.showStudent
+    tags=["student"],
+    response_model= schemas.showStudent
 )
 def create_student(students: schemas.student, db: Session = Depends(get_db)):
     student_db = student.create_student(students=students, db=db)
@@ -40,7 +40,7 @@ def get_student_name(name: str, db: Session = Depends(get_db)):
     return student_db
 
 
-@router.get("/student", tags=["student"], response_model=List[schemas.showStudent])
+@router.get("/students", tags=["student"], response_model=List[schemas.showStudent])
 def get_student_limit(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     student_db = student.get_student_limit(skip=skip, limit=limit, db=db)
     return student_db

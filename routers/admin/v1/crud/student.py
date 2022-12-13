@@ -75,9 +75,9 @@ def update_student(students: student, id: str, db: Session):
         raise HTTPException(status_code=404, detail="Student not found")
     student_db.st_surname = students.st_surname
     student_db.st_name = students.st_name
-    student_db.st_field = students.field
-    student_db.st_std = students.std
-    student_db.st_div = students.div
+    student_db.st_field = students.st_field
+    student_db.st_std = students.st_std
+    student_db.st_div = students.st_div
     student_db.st_city = students.st_city
     student_db.updated_at = date()
     db.add(student_db)

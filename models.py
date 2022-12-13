@@ -4,7 +4,6 @@ import enum
 from sqlalchemy import Boolean, Column, DateTime, Enum, String
 
 from database import Base
-from routers.admin.v1 import schemas
 
 
 class Field_name(enum.Enum):
